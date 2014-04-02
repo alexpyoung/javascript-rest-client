@@ -1,10 +1,12 @@
-Dependencies:
+Dependencies
+------------
 
-- jQuery
-- Bootstrap
-- QUnit
-- SASS
+* jQuery
+* Bootstrap
+* QUnit
+* SASS
 
-Assumptions:
+Assumptions
+-----------
 
-- Each object is guaranteed to have unique id
+* Each object is guaranteed to have unique id
