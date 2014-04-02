@@ -1,5 +1,4 @@
-var APP = APP || {
-};
+var APP = 1;
 
 APP.Model = {
     data: [], // Data model is backed by an array
