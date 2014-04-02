@@ -1,3 +1,6 @@
+var APP = APP || {
+};
+
 APP.Model = {
     data: [], // Data model is backed by an array
 
@@ -10,6 +13,7 @@ APP.Model = {
      * ATTN: Should sort by id
      */
     add: function (obj) {
+        'use strict';
         if (!this.verify(obj)) {
             return;
         }
@@ -30,8 +34,9 @@ APP.Model = {
          * @param: [REQUIRED] Color attribute to be updated
          */
         color: function (id, newColor) {
+            'use strict';
             var index = APP.Model.search(id);
-            if (index === -1 || !(newColor == "red" || newColor == "green" || newColor == "blue")) {
+            if (index === -1 || !(newColor === "red" || newColor === "green" || newColor === "blue")) {
                 return;
             }
 
@@ -45,6 +50,7 @@ APP.Model = {
      * @param: NONE
      */
     length: function () {
+        'use strict';
         return this.data.length;
     },
 
@@ -55,6 +61,7 @@ APP.Model = {
      * @return: data[index] or null if DNE
      */
     at: function (index) {
+        'use strict';
         if (index < 0 || index > this.data.length - 1 || isNaN(index)) {
             return null;
         }
@@ -72,9 +79,11 @@ APP.Model = {
      * Assumes each object has a unique ID
      */
     search: function (id) {
-        var minIndex = 0;
-        var maxIndex = this.data.length - 1;
-        var currentIndex, currentId;
+        'use strict';
+        var minIndex = 0,
+            maxIndex = this.data.length - 1,
+            currentIndex,
+            currentId;
 
         while (minIndex <= maxIndex) {
             // Find midpoint and round down
@@ -101,12 +110,13 @@ APP.Model = {
      * @return: Boolean of verification
      */
     verify: function (obj) {
+        'use strict';
         // Validates object
-        if(obj && obj.hasOwnProperty("id") && obj.hasOwnProperty("color")) {
+        if (obj && obj.hasOwnProperty("id") && obj.hasOwnProperty("color")) {
             // Validates color
-            return (obj.color === "red" || obj.color == "green" || obj.color == "");
-        } else {
-            return false;
+            return (obj.color === "red" || obj.color === "green" || obj.color === "blue");
         }
+
+        return false;
     }
-}
+};
