@@ -1,3 +1,2 @@
-var App = App || {
-	
+var APP = APP || {
 };
