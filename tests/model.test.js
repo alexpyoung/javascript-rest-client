@@ -1,3 +1,5 @@
+/*global APP, module, test, ok, strictEqual */
+
 module("Model", {
     /* Adds an object to the underlying array so that accessor
      * functions have something to work with
@@ -26,12 +28,12 @@ test("length", 1, function () {
  * and checks that the object returned is a valid object
  */
 test("at", 4, function () {
+    var obj = APP.Model.at(0);
     strictEqual(APP.Model.at(-1), null, "Model.at(-1) returns null");
     strictEqual(APP.Model.at(APP.Model.length()), null, "Model.length returns null");
     strictEqual(APP.Model.at("foo"), null, "Model.at(NaN) returns null");
-    var obj = APP.Model.at(0);
     ok(APP.Model.verify(obj), "Returned object is verified");
-})
+});
 
 /* @test: Model.verify(obj)
  * Ensures that the object is defined, has Id and Color properties and
@@ -39,15 +41,15 @@ test("at", 4, function () {
  */
 test("verify", 5, function () {
     var noId = {
-        "color": "red"
-    };
-    var noColor = {
-        "id": 0
-    };
-    var invalidColor = {
-        "id": 0,
-        "color": "yellow"
-    }
+            "color": "red"
+        },
+        noColor = {
+            "id": 0
+        },
+        invalidColor = {
+            "id": 0,
+            "color": "yellow"
+        };
     ok(APP.Model.verify(APP.Model.at(0)), "Good object verifies");
     ok(!APP.Model.verify(undefined), "Undefined object does not verify");
     ok(!APP.Model.verify(noId), "Missing ID property does not verify");
@@ -63,10 +65,10 @@ test("add", 4, function () {
     var obj = {
         "id": 1,
         "color": "green"
-    };
+    },
+        index = APP.Model.add(obj);
 
     strictEqual(APP.Model.length(), 1, "Model.length initially 1");
-    var index = APP.Model.add(obj);
     strictEqual(index, 1, "Model.add returned the proper index");
     strictEqual(APP.Model.at(index), obj, "Object in model is equal to object added");
     strictEqual(APP.Model.length(), 2, "Model.length finally 2");
@@ -86,9 +88,10 @@ test("search", 2, function () {
  * with a valid color (red, green, or blue)
  */
 test("modify.color", 3, function () {
-    strictEqual(APP.Model.modify.color(-1, "green"), undefined, "Modifying an object with invalid Id fails");
     var obj = APP.Model.at(0);
-    strictEqual(obj.color, "red", "Model.at(0).color initially \"red\"")
+
+    strictEqual(APP.Model.modify.color(-1, "green"), undefined, "Modifying an object with invalid Id fails");
+    strictEqual(obj.color, "red", "Model.at(0).color initially \"red\"");
     APP.Model.modify.color(obj.id, "green");
     strictEqual(obj.color, "green", "Model.at(0) color finally \"green\"");
 });
