@@ -57,7 +57,7 @@ APP.Model = {
      * @return: data[index] or null if DNE
      */
     at: function (index) {
-        if (index < 0 || index > this.data.length - 1 || Number.isNaN(index)) {
+        if (index < 0 || index > this.data.length - 1 || !/^\d+$/.test(index)) {
             return null;
         }
 

@@ -31,7 +31,7 @@ test("at", 4, function () {
     var obj = APP.Model.at(0);
     strictEqual(APP.Model.at(-1), null, "Model.at(-1) returns null");
     strictEqual(APP.Model.at(APP.Model.length()), null, "Model.length returns null");
-    strictEqual(APP.Model.at("foo"), null, "Model.at(NaN) returns null");
+    strictEqual(APP.Model.at("foo"), null, "Model.at(String) returns null");
     ok(APP.Model.verify(obj), "Returned object is verified");
 });
 
@@ -66,9 +66,10 @@ test("add", 4, function () {
         "id": 1,
         "color": "green"
     },
-        index = APP.Model.add(obj);
+        index;
 
     strictEqual(APP.Model.length(), 1, "Model.length initially 1");
+    index = APP.Model.add(obj);
     strictEqual(index, 1, "Model.add returned the proper index");
     strictEqual(APP.Model.at(index), obj, "Object in model is equal to object added");
     strictEqual(APP.Model.length(), 2, "Model.length finally 2");
