@@ -2,8 +2,9 @@ Dependencies
 ------------
 
 * jQuery
+    - [QUnit](http://qunitjs.com/)
+    - [Mockjax](https://github.com/appendto/jquery-mockjax)
 * Bootstrap
-* QUnit
 * SASS
 
 Assumptions
