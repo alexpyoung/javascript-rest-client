@@ -1,68 +1,16 @@
 /*global APP */
 
-APP.Model = {
-    data: [], // Data model is backed by an array
-
-    /* @function: add
-     * Inserts a new object at the end of the array
-     * 
-     * @param: [REQUIRED] Object to be inserted
-     * @return: Index the object is inserted at
-     *
-     * ATTN: Should sort by id
-     */
-    add: function (obj) {
-        if (!this.verify(obj)) {
-            return;
-        }
-
-        this.data.push(obj);
-        return this.data.length - 1;
-    },
-
-    /* @function: modify
-     * Provides a structure for modifying various
-     * object attributes
-     */
-    modify: {
-        /* @function: color
-         * Updates an object's color to a new color
-         *
-         * @param: [REQUIRED] ID attribute of object
-         * @param: [REQUIRED] Color attribute to be updated
-         */
-        color: function (id, newColor) {
-            var index = APP.Model.search(id);
-            if (index === -1 || !(newColor === "red" || newColor === "green" || newColor === "blue")) {
-                return;
-            }
-
-            APP.Model.data[index].color = newColor;
-        }
-    },
-
-    /* @function: length
-     * Returns the length of the data array
-     *
-     * @param: NONE
-     */
-    length: function () {
-        return this.data.length;
-    },
-
-    /* @function: at
-     * Returns the obj at a given index
-     *
-     * @param: [REQUIRED] Index to access object at
-     * @return: data[index] or null if DNE
-     */
-    at: function (index) {
-        if (index < 0 || index > this.data.length - 1 || !/^\d+$/.test(index)) {
-            return null;
-        }
-
-        return this.data[index];
-    },
+/* @SubModule: Model
+ * Model that provides an interface to the underlying
+ * data array
+ *
+ * @param: model object namespaced under APP module
+ * @return: public interface
+ */
+APP.Model = (function (model) {
+    var data = [], // Model data is backed by an array
+        search, // Private method
+        verify; // Private method
 
     /* @function: search
      * Performs a simple binary search to find the index
@@ -73,16 +21,16 @@ APP.Model = {
      *
      * Assumes each object has a unique ID
      */
-    search: function (id) {
+    search = function (id) {
         var minIndex = 0,
-            maxIndex = this.data.length - 1,
+            maxIndex = data.length - 1,
             currentIndex,
             currentId;
 
         while (minIndex <= maxIndex) {
             // Find midpoint and round down
             currentIndex = Math.floor((minIndex + maxIndex) / 2);
-            currentId = this.data[currentIndex].id;
+            currentId = data[currentIndex].id;
 
             if (id < currentId) {
                 // Change index to search lower subarray
@@ -94,8 +42,8 @@ APP.Model = {
                 return currentIndex;
             }
         }
-        return -1;
-    },
+        return -1; // Invalid index indicates DNEd
+    };
 
     /* @function: verify
      * Verifies that the object exists and has the correct properties (id and color)
@@ -103,13 +51,95 @@ APP.Model = {
      * @param: [REQUIRED] Object to verify
      * @return: Boolean of verification
      */
-    verify: function (obj) {
+    verify = function (obj) {
         // Validates object
-        if (obj && obj.hasOwnProperty("id") && obj.hasOwnProperty("color")) {
+        if (obj &&
+                obj.hasOwnProperty("id") &&
+                obj.hasOwnProperty("color")
+                // Add properties to manifest
+                ) {
             // Validates color
-            return (obj.color === "red" || obj.color === "green" || obj.color === "blue");
+            return (obj.color === "red" ||
+                obj.color === "green" ||
+                obj.color === "blue"
+                // Validate more properties here
+                );
         }
 
         return false;
-    }
-};
+    };
+
+    /* @function: add
+     * Inserts a new object at the end of the array
+     * 
+     * @param: [REQUIRED] Object to be inserted
+     * @return: Index the object is inserted at
+     *
+     * ATTN: Should sort by id on every push
+     */
+    model.add = function (obj) {
+        if (!this.verify(obj)) {
+            return;
+        }
+
+        data.push(obj);
+        return data.length - 1;
+    };
+
+    /* @function: modify
+     * Provides a structure for modifying various
+     * object properties
+     */
+    model.modify = {};
+
+    /* @function: color
+     * Updates an object's color to a new color
+     *
+     * @param: [REQUIRED] ID property of object
+     * @param: [REQUIRED] Color property to be updated
+     * @return: modified object or undefined for invalid input
+     */
+    model.modify.color = function (id, newColor) {
+        var index = search(id),
+            object;
+        if (index === -1 || !(newColor === "red" || newColor === "green" || newColor === "blue")) {
+            return;
+        }
+
+        object = data[index];
+        object.color = newColor;
+        return object;
+    };
+
+    /* @function: length
+     * Returns the length of the data array
+     *
+     * @param: NONE
+     */
+    model.length = function () {
+        return data.length;
+    };
+
+    /* @function: at
+     * Returns the obj at a given index
+     *
+     * @param: [REQUIRED] Index to access object at
+     * @return: data[index] or undefined if DNE
+     */
+    model.at = function (index) {
+        // Test in range and isNumber (Regex)
+        if (index < 0 || index > data.length - 1 || !/^\d+$/.test(index)) {
+            return;
+        }
+
+        return data[index];
+    };
+
+    // Begin test | COMMENT OUT IN PRODUCTION
+    model.search = search; // Public method
+    model.verify = verify; // Public method
+    model.data = data; // Public var
+    // End test | END COMMENT
+
+    return model; // Public interface
+}(APP.Model || {}));
