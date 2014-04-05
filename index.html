@@ -1,52 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<meta name="description" content="">
-    	<meta name="author" content="">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
 
-		<title>JavaScript REST Client</title>
+    <title>JavaScript REST Client</title>
 
-		<link href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
-		<link href="vendor/css/qunit-1.14.0.css" rel="stylesheet">
-		<link href="lib/css/normalize.css" rel="stylesheet">
-		<link href="assets/css/core.css" rel="stylesheet">
-	</head>
-	<body>
-		<div id="qunit"></div>
-  		<div id="qunit-fixture"></div>
+    <link href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
+    <link href="lib/css/normalize.css" rel="stylesheet">
+    <link href="assets/css/core.css" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar navbar-inverse" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">JavaScript REST Client</a>
+            </div>
+            <div class="collapse navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="#">Home</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container">
 
-  		<nav class="navbar navbar-inverse" role="navigation">
-  			<div class="container">
-  				<div class="navbar-header">
-  					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-  						<span class="sr-only">Toggle navigation</span>
-  						<span class="icon-bar"></span>
-  						<span class="icon-bar"></span>
-  						<span class="icon-bar"></span>
-  					</button>
-  					<a class="navbar-brand" href="#">JavaScript REST Client</a>
-  				</div>
-  				<div class="collapse navbar-collapse">
-  					<ul class="nav navbar-nav">
-  						<li class="active"><a href="#">Home</a></li>
-  					</ul>
-  				</div>
-  			</div>
-  		</nav>
-  		<div class="container">
+    </div>
 
-  		</div>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="vendor/js/jquery-1.11.0.min.js"><\/script>')</script>
+    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+    <script>$.fn.modal || document.write('<script src="vendor/js/bootstrap.min.js"><\/script>')</script>
 
-		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-        <script>window.jQuery || document.write('<script src="vendor/js/jquery-1.11.0.min.js"><\/script>')</script>
-        <script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
-        <script>$.fn.modal || document.write('<script src="vendor/js/bootstrap.min.js"><\/script>')</script>
-        <script src="vendor/js/qunit-1.14.0.js"></script>
-        <script src="tests/model.test.js"></script>
-
-        <script src="assets/js/core.js"></script>
-        <script src="assets/js/model.js"></script>
-	</body>
+    <script src="assets/js/core.js"></script>
+    <script src="assets/js/model.js"></script>
+    <script src="assets/js/controller.js"></script>
+    <script src="assets/js/service.js"></script>
+</body>
 </html>
