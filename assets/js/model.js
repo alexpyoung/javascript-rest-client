@@ -7,8 +7,9 @@
  * @param: model object namespaced under APP module
  * @return: public interface
  */
-APP.Model = (function (model) {
-    var data = [], // Model data is backed by an array
+APP.Model = (function () {
+    var model = {}, // Public interface to return
+        data = [], // Model data is backed by an array
         search, // Private method
         verify; // Private method
 
@@ -142,4 +143,4 @@ APP.Model = (function (model) {
     // End test | END COMMENT
 
     return model; // Public interface
-}(APP.Model || {}));
+}());

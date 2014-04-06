@@ -7,11 +7,12 @@
  * @param: service object namespaced under APP module
  * @return: public interface
  */
-APP.Service = (function (service) {
-    var GET, /////
-        PUT, ///// Private REST methods
-        POST, ////
-        DELETE; //
+APP.Service = (function () {
+    var service = {}, // Public interface to return
+        GET, //////
+        PUT, ////// Private REST methods
+        POST, /////
+        DELETE; ///
 
     // Returns a GET HTTP request to url
     GET = function (url) {
@@ -64,4 +65,4 @@ APP.Service = (function (service) {
     };
 
     return service;
-}(APP.Service || {}));
+}());
