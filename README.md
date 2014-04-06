@@ -6,6 +6,7 @@ Dependencies
     - [Mockjax](https://github.com/appendto/jquery-mockjax)
 * Bootstrap
 * SASS
+* [Handlebars](https://github.com/wycats/handlebars.js/)
 
 Assumptions
 -----------
