@@ -31,11 +31,11 @@
             </div>
         </div>
     </nav>
-    <div class="container">
+    <div class="container" data-controller="Controller" data-action="show">
         <ul id="objects" class="objects"></ul>
     </div>
 
-    <script type="template" id="object-template">
+    <script type="text/template" id="object-template">
         <li>{{id}} | {{color}}</li>
     </script>
 
@@ -45,11 +45,14 @@
     <script>$.fn.modal || document.write('<script src="vendor/js/bootstrap.min.js"><\/script>')</script>
 
     <script src="tests/jquery.mockjax.js"></script>
-    <script src="mock-server.js"></script>
+    <script src="tests/mock-server.js"></script>
+    <script src="vendor/js/handlebars.min.js"></script>
 
     <script src="assets/js/app.js"></script>
     <script src="assets/js/service.js"></script>
     <script src="assets/js/model.js"></script>
     <script src="assets/js/controller.js"></script>
+    <script src="lib/js/utils.js"></script>
+    <script> UTIL.init(); </script>
 </body>
 </html>
