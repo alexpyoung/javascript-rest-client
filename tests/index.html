@@ -11,7 +11,9 @@
         <div id="qunit"></div>
         <div id="qunit-fixture"></div>
 
-        <ul id="objects" class="objects"></ul>
+        <div data-controller="Controller" data-action="show">
+            <ul id="objects" class="objects"></ul>
+        </div>    
 
         <script type="template" id="object-template">
             <li>{{id}} | {{color}}</li>
@@ -26,11 +28,13 @@
         <script src="../assets/js/service.js"></script>
         <script src="../assets/js/model.js"></script>
         <script src="../assets/js/controller.js"></script>
+        <script src="../lib/js/utils.js"></script>
 
         <script src="mock-server.js"></script>
         <script src="service.test.js"></script>
         <script src="model.test.js"></script>
         <script src="controller.test.js"></script>
         <script src="app.test.js"></script>
+        <script src="utils.test.js"></script>
     </body>
 </html>
