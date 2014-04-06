@@ -136,7 +136,7 @@ APP.Model = (function () {
         return data[index];
     };
 
-    // Begin test | COMMENT OUT IN PRODUCTION
+    // ATTN: Begin test | COMMENT OUT IN PRODUCTION
     model.search = search; // Public method
     model.verify = verify; // Public method
     model.data = data; // Public var
