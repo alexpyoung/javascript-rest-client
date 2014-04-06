@@ -1,12 +1,19 @@
-/*global jQuery, APP, module, test, ok */
+/*global jQuery, APP, module, asyncTest, ok, start */
 
 (function ($, Controller) {
     "use strict";
-    module("Controller");
+    module("Controller", {
+        teardown: function () {
+            $("#objects").empty();
+        }
+    });
 
-    test("show", function () {
+    asyncTest("show", function () {
         ok($("#objects").is(":empty"), "DOM is empty");
         Controller.show();
-        ok($("#objects:has(li)"), "DOM is populated");
+        setTimeout(function () {
+            ok(!$("#objects").is(":empty"), "DOM is populated");
+            start();
+        }, 1000);
     });
 }(jQuery, APP.Controller));

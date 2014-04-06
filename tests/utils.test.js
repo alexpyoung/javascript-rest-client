@@ -1,6 +1,6 @@
-/*global UTIL, APP, module, test, strictEqual */
+/*global jQuery, UTIL, APP, module, test, asyncTest, strictEqual */
 
-(function (util, controller) {
+(function ($, util, controller) {
     "use strict";
 
     module("UTIL", {
@@ -22,11 +22,16 @@
      * Tests that each controller-action attribute pair in the DOM
      * executes the init and action methods for that controller
      */
-    test("UTIL.init", function () {
+    asyncTest("UTIL.init", function () {
         var counter = controller.counter,
             numActions = document.querySelectorAll("[data-controller][data-action]").length;
         UTIL.init();
-        // Test for init and action for each controller-action pair
-        strictEqual(controller.counter, counter + 2 * numActions, numActions + "Controller.action(s) invoked");
+
+        setTimeout(function () {
+            // Test for init and action for each controller-action pair
+            strictEqual(controller.counter, counter + 2 * numActions, numActions + "Controller.action(s) invoked");
+            $("#objects").empty();
+            start();
+        }, 1000);
     });
-}(UTIL, APP.Controller));
+}(jQuery, UTIL, APP.Controller));
