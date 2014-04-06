@@ -1,4 +1,4 @@
-/*global APP */
+/*global jQuery, APP */
 
 /* @SubModule: Service
  * Controller sub-module relies on various services that
@@ -7,7 +7,7 @@
  * @param: service object namespaced under APP module
  * @return: public interface
  */
-APP.Service = (function () {
+APP.Service = (function ($) {
     var service = {}, // Public interface to return
         GET, //////
         PUT, ////// Private REST methods
@@ -65,4 +65,4 @@ APP.Service = (function () {
     };
 
     return service;
-}());
+}(jQuery));

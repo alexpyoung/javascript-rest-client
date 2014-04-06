@@ -1,4 +1,4 @@
-/*global APP, Handlebars */
+/*global jQuery, Handlebars, APP */
 
 /* @SubModule: Controller
  * Sub-module that handles all the business logic between
@@ -7,7 +7,7 @@
  * @param: controller object namespaced under APP module
  * @return: public interface
  */
-APP.Controller = (function (service, Handlebars) {
+APP.Controller = (function ($, Handlebars, service) {
     var controller = {}, // Public interface to return
         $objectsElement = $("objects"), // Cache DOM query
         appendObjects; // Private method
@@ -40,4 +40,4 @@ APP.Controller = (function (service, Handlebars) {
     };
 
     return controller; // Public interface
-}(APP.Service, Handlebars));
+}(jQuery, Handlebars, APP.Service));

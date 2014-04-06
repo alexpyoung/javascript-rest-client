@@ -1,4 +1,4 @@
-/*global APP, jQuery, module, test, ok */
+/*global jQuery, APP, module, test, ok */
 
 (function ($, Controller) {
     "use strict";
