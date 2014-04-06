@@ -29,6 +29,17 @@ APP.Controller = (function ($, Handlebars, service) {
         });
     };
 
+    /* @function: init
+     * Constructor for controller, invoked with every controller-action
+     * attribute pair in HTML, and by data-controller attribute 
+     * with no action
+     *
+     * @param: NONE
+     */
+    controller.init = function () {
+
+    };
+
     /* @function: show
      * Injects data from GET /objects request into view
      *
