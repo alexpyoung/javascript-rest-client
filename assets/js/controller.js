@@ -9,7 +9,7 @@
  */
 APP.Controller = (function ($, Handlebars, service) {
     var controller = {}, // Public interface to return
-        $objectsElement = $("objects"), // Cache DOM query
+        $objectsElement = $("#objects"), // Cache DOM query
         appendObjects; // Private method
 
     /* ATTN: COMMENT OUT IN PRODUCTION
@@ -52,8 +52,10 @@ APP.Controller = (function ($, Handlebars, service) {
      * @param: NONE
      */
     controller.show = function () {
-        var objects = service.query.GET("/objects");
-        appendObjects(objects, $objectsElement);
+        service.query.GET("/objects").done(function (data) {
+            var objects = data.objects;
+            appendObjects(objects, $objectsElement);
+        });
 
         controller.counter++; // ATTN: COMMENT OUT IN PRODUCTION
     };
