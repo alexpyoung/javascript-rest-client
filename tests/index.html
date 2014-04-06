@@ -11,17 +11,25 @@
         <div id="qunit"></div>
         <div id="qunit-fixture"></div>
 
+        <ul id="objects" class="objects"></ul>
+
+        <script type="template" id="object-template">
+            <li>{{id}} | {{color}}</li>
+        </script>
+
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
         <script src="qunit-1.14.0.js"></script>
         <script src="jquery.mockjax.js"></script>
+        <script src="../vendor/js/handlebars.min.js"></script>
         
         <script src="../assets/js/core.js"></script>
+        <script src="../assets/js/service.js"></script>
         <script src="../assets/js/model.js"></script>
         <script src="../assets/js/controller.js"></script>
-        <script src="../assets/js/service.js"></script>
 
         <script src="mock-server.js"></script>
-        <script src="model.test.js"></script>
         <script src="service.test.js"></script>
+        <script src="model.test.js"></script>
+        <script src="controller.test.js"></script>
     </body>
 </html>
