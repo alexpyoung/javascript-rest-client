@@ -12,6 +12,12 @@ APP.Controller = (function ($, Handlebars, service) {
         $objectsElement = $("objects"), // Cache DOM query
         appendObjects; // Private method
 
+    /* ATTN: COMMENT OUT IN PRODUCTION
+     * Counter increments any time a Controller.method
+     * executes. Used in tests
+     */
+    controller.counter = 0;
+
     /* @function: appendObjects
      * Uses Handlebars client-side templating to render
      * a JSON array of objects and append it to the DOM
@@ -37,7 +43,7 @@ APP.Controller = (function ($, Handlebars, service) {
      * @param: NONE
      */
     controller.init = function () {
-
+        controller.counter++; // ATTN: COMMENT OUT IN PRODUCTION
     };
 
     /* @function: show
@@ -48,6 +54,8 @@ APP.Controller = (function ($, Handlebars, service) {
     controller.show = function () {
         var objects = service.query.GET("/objects");
         appendObjects(objects, $objectsElement);
+
+        controller.counter++; // ATTN: COMMENT OUT IN PRODUCTION
     };
 
     return controller; // Public interface
