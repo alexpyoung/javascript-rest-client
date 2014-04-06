@@ -1,6 +1,6 @@
 /* @Module: APP
- * The public interface module organized into various,
- * loosely-coupled, augmentable sub-modules.
+ * The application's MVC module that encapsulates
+ * individual MVC components into sub-modules.
  *
  * @param: NONE
  * @return: public interface
