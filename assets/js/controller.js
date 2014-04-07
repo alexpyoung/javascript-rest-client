@@ -57,12 +57,12 @@ APP.Controller = (function ($, Handlebars, service) {
         controller.counter++; // ATTN: COMMENT OUT IN PRODUCTION
     };
 
-    /* @method show
+    /* @method index
      * Injects data from GET /objects request into view
      *
      * @param NONE
      */
-    controller.show = function () {
+    controller.index = function () {
         var promise = service.query.GET("/objects");
 
         promise.done(function (data) {
@@ -71,7 +71,7 @@ APP.Controller = (function ($, Handlebars, service) {
         });
         /*jslint unparam: true */
         promise.fail(function (jqXHR, status, error) {
-            throw new ControllerException(".show - GET /objects failed: " + status + ", " + error);
+            throw new ControllerException(".index - GET /objects failed: " + status + ", " + error);
         });
         /*jslint unparam: false */
 

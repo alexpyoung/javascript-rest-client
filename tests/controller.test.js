@@ -8,9 +8,9 @@
         }
     });
 
-    asyncTest("show", function () {
+    asyncTest("index", function () {
         ok($("#objects").is(":empty"), "DOM is empty");
-        Controller.show();
+        Controller.index();
         setTimeout(function () {
             ok(!$("#objects").is(":empty"), "DOM is populated");
             start();
