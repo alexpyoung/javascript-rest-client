@@ -151,6 +151,7 @@ APP.Model = (function () {
         return data[index];
     };
 
+    // Custom exception for APP.Model
     ModelException = function (message) {
         this.message = "APP.Model" + message;
     };

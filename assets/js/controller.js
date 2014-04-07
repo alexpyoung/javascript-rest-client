@@ -10,7 +10,8 @@
 APP.Controller = (function ($, Handlebars, service) {
     var controller = {}, // Public interface to return
         $objectsElement = $("#objects"), // Cache DOM query
-        appendObjects; // Private method
+        appendObjects, // Private method
+        ControllerException; // Exception object for error handling
 
     /* ATTN: COMMENT OUT IN PRODUCTION
      * Counter increments any time a Controller.method
@@ -28,10 +29,10 @@ APP.Controller = (function ($, Handlebars, service) {
     appendObjects = function (objects, $domElement) {
         // Error handling
         if (!Array.isArray(objects)) {
-            throw ("APP.Controller.appendObjects - Expected array");
+            throw new ControllerException(".appendObjects - Expected array");
         }
         if (!($domElement instanceof $)) {
-            throw ("APP.Controller.appendObjects - Expected jQuery object");
+            throw new ControllerException(".appendObjects - Expected jQuery object");
         }
 
         var objectTemplate = Handlebars.compile($("#object-template").html()),
@@ -70,12 +71,24 @@ APP.Controller = (function ($, Handlebars, service) {
         });
         /*jslint unparam: true */
         promise.fail(function (jqXHR, status, error) {
-            throw ("APP.Controller.show - GET /objects failed: " + status + ", " + error);
+            throw new ControllerException(".show - GET /objects failed: " + status + ", " + error);
         });
         /*jslint unparam: false */
 
         controller.counter++; // ATTN: COMMENT OUT IN PRODUCTION
     };
+
+    // Custom exception for APP.Controller
+    ControllerException = function (message) {
+        this.message = "APP.Controller" + message;
+    };
+    ControllerException.prototype.toString = function () {
+        return this.message;
+    };
+
+    // ATTN: Begin test | COMMENT OUT IN PRODUCTION
+    controller.ControllerException = ControllerException;
+    // End test | END COMMENT
 
     return controller; // Public interface
 }(jQuery, Handlebars, APP.Service));

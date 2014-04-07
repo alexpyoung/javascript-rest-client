@@ -13,7 +13,8 @@ APP.Service = (function ($) {
         PUT, ////// Private REST methods
         POST, /////
         DELETE, ///
-        validateURL;
+        validateURL, // For error handling
+        ServiceException; // Exception object for error handling
 
     /* @function: validateURL
      * Checks that the URL is a string, otherwise throws
@@ -24,7 +25,7 @@ APP.Service = (function ($) {
      */
     validateURL = function (url) {
         if (typeof url !== "string") {
-            throw ("APP.Service.query - Invalid URL: " + url);
+            throw new ServiceException(".query - Invalid URL: " + url);
         }
     };
 
@@ -70,6 +71,19 @@ APP.Service = (function ($) {
             "data": data
         });
     };
+
+    // Custom exception for APP.Service
+    ServiceException = function (message) {
+        this.message = "APP.Service" + message;
+    };
+    ServiceException.prototype.toString = function () {
+        return this.message;
+    };
+
+    // ATTN: Begin test | COMMENT OUT IN PRODUCTION
+    service.validateURL = validateURL;
+    service.ServiceException = ServiceException;
+    // End test | END COMMENT
 
     /* @Service: query
      * A public sub-module interface for RESTful calls
