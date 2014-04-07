@@ -1,4 +1,4 @@
-Simple JavaScript RESTful Client
+JavaScript REST Client
 ================================
 Introduction
 ------------
