@@ -4,8 +4,8 @@
  * Model that provides an interface to the underlying
  * data array
  *
- * @param: model object namespaced under APP module
- * @return: public interface
+ * @param model object namespaced under APP module
+ * @return public interface
  */
 APP.Model = (function () {
     var model = {}, // Public interface to return
@@ -14,12 +14,12 @@ APP.Model = (function () {
         verify, // Private method
         ModelException; // Exception object for error handling
 
-    /* @function: search
+    /* @method search
      * Performs a simple binary search to find the index
      * of an object
      *
-     * @param: [REQUIRED] ID of object to search for
-     * @return: Index of object, or -1 if DNE
+     * @param [REQUIRED] ID of object to search for
+     * @return Index of object, or -1 if DNE
      *
      * Assumes each object has a unique ID
      */
@@ -52,11 +52,11 @@ APP.Model = (function () {
         return -1; // Invalid index indicates DNEd
     };
 
-    /* @function: verify
+    /* @method verify
      * Verifies that the object exists and has the correct properties (id and color)
      *
-     * @param: [REQUIRED] Object to verify
-     * @return: Boolean of verification
+     * @param [REQUIRED] Object to verify
+     * @return Boolean of verification
      */
     verify = function (obj) {
         // Validates object
@@ -76,11 +76,11 @@ APP.Model = (function () {
         return false;
     };
 
-    /* @function: add
+    /* @method add
      * Inserts a new object at the end of the array
      * 
-     * @param: [REQUIRED] Object to be inserted
-     * @return: Index the object is inserted at
+     * @param [REQUIRED] Object to be inserted
+     * @return Index the object is inserted at
      *
      * ATTN: Should sort by id on every push
      */
@@ -94,18 +94,18 @@ APP.Model = (function () {
         return data.length - 1;
     };
 
-    /* @function: modify
+    /* @method modify
      * Provides a structure for modifying various
      * object properties
      */
     model.modify = {};
 
-    /* @function: color
+    /* @method color
      * Updates an object's color to a new color
      *
-     * @param: [REQUIRED] ID property of object
-     * @param: [REQUIRED] Color property to be updated
-     * @return: modified object or undefined for invalid input
+     * @param [REQUIRED] ID property of object
+     * @param [REQUIRED] Color property to be updated
+     * @return modified object or undefined for invalid input
      */
     model.modify.color = function (id, color) {
         var index = search(id),
@@ -124,20 +124,20 @@ APP.Model = (function () {
         return object;
     };
 
-    /* @function: length
+    /* @method length
      * Returns the length of the data array
      *
-     * @param: NONE
+     * @param NONE
      */
     model.length = function () {
         return data.length;
     };
 
-    /* @function: at
+    /* @method at
      * Returns the obj at a given index
      *
-     * @param: [REQUIRED] Index to access object at
-     * @return: data[index] or undefined if DNE
+     * @param [REQUIRED] Index to access object at
+     * @return data[index] or undefined if DNE
      */
     model.at = function (index) {
         // Error handling 

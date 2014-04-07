@@ -4,8 +4,8 @@
  * Sub-module that handles all the business logic between
  * the model and the view, in other words, the brain.
  *
- * @param: controller object namespaced under APP module
- * @return: public interface
+ * @param controller object namespaced under APP module
+ * @return public interface
  */
 APP.Controller = (function ($, Handlebars, service) {
     var controller = {}, // Public interface to return
@@ -19,12 +19,12 @@ APP.Controller = (function ($, Handlebars, service) {
      */
     controller.counter = 0;
 
-    /* @function: appendObjects
+    /* @method appendObjects
      * Uses Handlebars client-side templating to render
      * a JSON array of objects and append it to the DOM
      *
-     * @param: [REQUIRED] JSON array of objects
-     * @param: [REQUIRED] DOM element to append HTML
+     * @param [REQUIRED] JSON array of objects
+     * @param [REQUIRED] DOM element to append HTML
      */
     appendObjects = function (objects, $domElement) {
         // Error handling
@@ -46,21 +46,21 @@ APP.Controller = (function ($, Handlebars, service) {
         /*jslint unparam: false */
     };
 
-    /* @function: init
+    /* @method init
      * Constructor for controller, invoked with every controller-action
      * attribute pair in HTML, and by data-controller attribute 
      * with no action
      *
-     * @param: NONE
+     * @param NONE
      */
     controller.init = function () {
         controller.counter++; // ATTN: COMMENT OUT IN PRODUCTION
     };
 
-    /* @function: show
+    /* @method show
      * Injects data from GET /objects request into view
      *
-     * @param: NONE
+     * @param NONE
      */
     controller.show = function () {
         var promise = service.query.GET("/objects");

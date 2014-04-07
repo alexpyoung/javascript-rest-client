@@ -4,8 +4,8 @@
  * Controller sub-module relies on various services that
  * this API can provide, such as RESTful AJAX requests
  *
- * @param: service object namespaced under APP module
- * @return: public interface
+ * @param service object namespaced under APP module
+ * @return public interface
  */
 APP.Service = (function ($) {
     var service = {}, // Public interface to return
@@ -16,12 +16,12 @@ APP.Service = (function ($) {
         validateURL, // For error handling
         ServiceException; // Exception object for error handling
 
-    /* @function: validateURL
+    /* @method validateURL
      * Checks that the URL is a string, otherwise throws
      * and error.
      * ATTN: In production, should use Regex to validate URL as well
      *
-     * @param: [REQUIRED] - Url
+     * @param [REQUIRED] - Url
      */
     validateURL = function (url) {
         if (typeof url !== "string") {
