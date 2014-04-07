@@ -11,7 +11,8 @@ APP.Model = (function () {
     var model = {}, // Public interface to return
         data = [], // Model data is backed by an array
         search, // Private method
-        verify; // Private method
+        verify, // Private method
+        ModelException; // Exception object for error handling
 
     /* @function: search
      * Performs a simple binary search to find the index
@@ -24,8 +25,8 @@ APP.Model = (function () {
      */
     search = function (id) {
         // Error handling
-        if (!(id instanceof Number) || id < 0) {
-            throw ("APP.Model.search - Invalid id: " + id);
+        if ((typeof id !== "number") || id < 0) {
+            throw new ModelException(".search - Invalid id: " + id);
         }
 
         var minIndex = 0,
@@ -86,7 +87,7 @@ APP.Model = (function () {
     model.add = function (obj) {
         // Error handling
         if (!this.verify(obj)) {
-            throw ("APP.Model.add - Invalid object: " + obj);
+            throw new ModelException(".add - Invalid object: " + obj);
         }
 
         data.push(obj);
@@ -112,10 +113,10 @@ APP.Model = (function () {
 
         // Error handling
         if (index === -1) { // ID not found
-            throw ("APP.Model.modify.color - Invalid id: " + id);
+            throw new ModelException(".modify.color - Invalid id: " + id);
         }
         if (!(color === "red" || color === "green" || color === "blue")) { // Invalid color
-            throw ("APP.Model.modify.color - Invalid color: " + color);
+            throw new ModelException(".modify.color - Invalid color: " + color);
         }
 
         object = data[index];
@@ -139,21 +140,29 @@ APP.Model = (function () {
      * @return: data[index] or undefined if DNE
      */
     model.at = function (index) {
-        // Error handlinng 
-        if (!/^\d+$/.test(index)) { // Is number
-            throw ("APP.Model.at - Index is not a number: " + index);
+        // Error handling 
+        if (index < 0 || index >= data.length) { // Valid range
+            throw new ModelException(".at - Index out of range: " + index);
         }
-        if (index < 0 || index > data.length - 1) { // Valid range
-            throw ("APP.Model.at - Index out of range: " + index);
+        if (!/^\d+$/.test(index)) { // Is number
+            throw new ModelException(".at - Index is not a number: " + index);
         }
 
         return data[index];
+    };
+
+    ModelException = function (message) {
+        this.message = "APP.Model" + message;
+    };
+    ModelException.prototype.toString = function () {
+        return this.message;
     };
 
     // ATTN: Begin test | COMMENT OUT IN PRODUCTION
     model.search = search; // Public method
     model.verify = verify; // Public method
     model.data = data; // Public var
+    model.ModelException = ModelException;
     // End test | END COMMENT
 
     return model; // Public interface

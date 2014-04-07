@@ -23,7 +23,7 @@ APP.Service = (function ($) {
      * @param: [REQUIRED] - Url
      */
     validateURL = function (url) {
-        if (!(url instanceof String)) {
+        if (typeof url !== "string") {
             throw ("APP.Service.query - Invalid URL: " + url);
         }
     };

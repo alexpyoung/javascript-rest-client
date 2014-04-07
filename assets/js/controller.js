@@ -27,7 +27,7 @@ APP.Controller = (function ($, Handlebars, service) {
      */
     appendObjects = function (objects, $domElement) {
         // Error handling
-        if (!(objects instanceof Array)) {
+        if (!Array.isArray(objects)) {
             throw ("APP.Controller.appendObjects - Expected array");
         }
         if (!($domElement instanceof $)) {
@@ -62,10 +62,17 @@ APP.Controller = (function ($, Handlebars, service) {
      * @param: NONE
      */
     controller.show = function () {
-        service.query.GET("/objects").done(function (data) {
+        var promise = service.query.GET("/objects");
+
+        promise.done(function (data) {
             var objects = data.objects;
             appendObjects(objects, $objectsElement);
         });
+        /*jslint unparam: true */
+        promise.fail(function (jqXHR, status, error) {
+            throw ("APP.Controller.show - GET /objects failed: " + status + ", " + error);
+        });
+        /*jslint unparam: false */
 
         controller.counter++; // ATTN: COMMENT OUT IN PRODUCTION
     };
