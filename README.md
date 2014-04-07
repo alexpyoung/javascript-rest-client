@@ -3,6 +3,7 @@ Simple JavaScript RESTful Client
 Introduction
 ------------
 ### Prompt
+Using languages, frameworks and tools of your choice, implement the following:
 * A web service that exposes a REST interface, and allows the client to retrieve a collection of objects.
     - Each object has the following attributes: id, and 'color'. Color can be one of red, green or blue.
 * A client UI that:
