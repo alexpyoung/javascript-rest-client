@@ -23,6 +23,11 @@ APP.Model = (function () {
      * Assumes each object has a unique ID
      */
     search = function (id) {
+        // Error handling
+        if (!(id instanceof Number) || id < 0) {
+            throw ("APP.Model.search - Invalid id: " + id);
+        }
+
         var minIndex = 0,
             maxIndex = data.length - 1,
             currentIndex,
@@ -79,8 +84,9 @@ APP.Model = (function () {
      * ATTN: Should sort by id on every push
      */
     model.add = function (obj) {
+        // Error handling
         if (!this.verify(obj)) {
-            return;
+            throw ("APP.Model.add - Invalid object: " + obj);
         }
 
         data.push(obj);
@@ -100,15 +106,20 @@ APP.Model = (function () {
      * @param: [REQUIRED] Color property to be updated
      * @return: modified object or undefined for invalid input
      */
-    model.modify.color = function (id, newColor) {
+    model.modify.color = function (id, color) {
         var index = search(id),
             object;
-        if (index === -1 || !(newColor === "red" || newColor === "green" || newColor === "blue")) {
-            return;
+
+        // Error handling
+        if (index === -1) { // ID not found
+            throw ("APP.Model.modify.color - Invalid id: " + id);
+        }
+        if (!(color === "red" || color === "green" || color === "blue")) { // Invalid color
+            throw ("APP.Model.modify.color - Invalid color: " + color);
         }
 
         object = data[index];
-        object.color = newColor;
+        object.color = color;
         return object;
     };
 
@@ -128,9 +139,12 @@ APP.Model = (function () {
      * @return: data[index] or undefined if DNE
      */
     model.at = function (index) {
-        // Test in range and isNumber (Regex)
-        if (index < 0 || index > data.length - 1 || !/^\d+$/.test(index)) {
-            return;
+        // Error handlinng 
+        if (!/^\d+$/.test(index)) { // Is number
+            throw ("APP.Model.at - Index is not a number: " + index);
+        }
+        if (index < 0 || index > data.length - 1) { // Valid range
+            throw ("APP.Model.at - Index out of range: " + index);
         }
 
         return data[index];

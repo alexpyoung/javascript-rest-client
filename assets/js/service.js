@@ -12,10 +12,25 @@ APP.Service = (function ($) {
         GET, //////
         PUT, ////// Private REST methods
         POST, /////
-        DELETE; ///
+        DELETE, ///
+        validateURL;
+
+    /* @function: validateURL
+     * Checks that the URL is a string, otherwise throws
+     * and error.
+     * ATTN: In production, should use Regex to validate URL as well
+     *
+     * @param: [REQUIRED] - Url
+     */
+    validateURL = function (url) {
+        if (!(url instanceof String)) {
+            throw ("APP.Service.query - Invalid URL: " + url);
+        }
+    };
 
     // Returns a GET HTTP request to url
     GET = function (url) {
+        validateURL(url);
         return $.ajax({
             "type": "GET",
             "url": url,
@@ -25,6 +40,7 @@ APP.Service = (function ($) {
 
     // Returns a PUT HTTP request to url with data
     PUT = function (url, data) {
+        validateURL(url);
         return $.ajax({
             "type": "PUT",
             "url": url,
@@ -35,6 +51,7 @@ APP.Service = (function ($) {
 
     // Returns a POST HTTP request to url with data
     POST = function (url, data) {
+        validateURL(url);
         return $.ajax({
             "type": "POST",
             "url": url,
@@ -45,6 +62,7 @@ APP.Service = (function ($) {
 
     // Returns a DELETE HTTP request to url with data
     DELETE = function (url, data) {
+        validateURL(url);
         return $.ajax({
             "type": "DELETE",
             "url": url,

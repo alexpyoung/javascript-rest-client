@@ -26,13 +26,23 @@ APP.Controller = (function ($, Handlebars, service) {
      * @param: [REQUIRED] DOM element to append HTML
      */
     appendObjects = function (objects, $domElement) {
+        // Error handling
+        if (!(objects instanceof Array)) {
+            throw ("APP.Controller.appendObjects - Expected array");
+        }
+        if (!($domElement instanceof $)) {
+            throw ("APP.Controller.appendObjects - Expected jQuery object");
+        }
+
         var objectTemplate = Handlebars.compile($("#object-template").html()),
             htmlWithData;
 
+        /*jslint unparam: true */
         $.each(objects, function (i, object) {
             htmlWithData = objectTemplate(object);
             $domElement.append(htmlWithData);
         });
+        /*jslint unparam: false */
     };
 
     /* @function: init
