@@ -144,7 +144,7 @@ APP.Model = (function () {
         if (index < 0 || index >= data.length) { // Valid range
             throw new ModelException(".at - Index out of range: " + index);
         }
-        if (!/^\d+$/.test(index)) { // Is number
+        if (!Number.isNumber(index)) { // Is number
             throw new ModelException(".at - Index is not a number: " + index);
         }
 
