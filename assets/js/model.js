@@ -141,10 +141,10 @@ APP.Model = (function () {
      */
     model.at = function (index) {
         // Error handling 
-        if (index < 0 || index >= data.length) { // Valid range
+        if (index < 0 || index >= data.length) { // Invalid range
             throw new ModelException(".at - Index out of range: " + index);
         }
-        if (!Number.isNumber(index)) { // Is number
+        if (!(/^\d+$/).test(index)) { // Is not number
             throw new ModelException(".at - Index is not a number: " + index);
         }
 
