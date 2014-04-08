@@ -141,11 +141,11 @@ APP.Model = (function () {
      */
     model.at = function (index) {
         // Error handling 
-        if (index < 0 || index >= data.length) { // Invalid range
-            throw new ModelException(".at - Index out of range: " + index);
-        }
         if (!(/^\d+$/).test(index)) { // Is not number
             throw new ModelException(".at - Index is not a number: " + index);
+        }
+        if (index < 0 || index >= data.length) { // Invalid range
+            throw new ModelException(".at - Index out of range: " + index);
         }
 
         return data[index];
