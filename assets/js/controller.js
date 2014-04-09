@@ -12,7 +12,8 @@ APP.Controller = (function ($, Handlebars, service) {
         $objectsElement = $("#objects"), // Cache DOM query
         indexObjects, // Private method
         deleteObject, // Private method
-        objectButtonHandler, // Private method
+        objectDeleteHandler, // Private method
+        objectEditHandler, // Private method
         ControllerException; // Exception object for error handling
 
     /* ATTN: COMMENT OUT IN PRODUCTION
@@ -69,10 +70,22 @@ APP.Controller = (function ($, Handlebars, service) {
         $domElement.find(dataIdAttribute).remove();
     };
 
-    objectButtonHandler = function () {
+    /* @method objectDeleteHandler
+     * Event handler for deleting object
+     */
+    objectDeleteHandler = function () {
         var id = $(this).attr("data-id");
 
         controller.delete(id);
+    };
+
+    /* @method objectEditHandler
+     * Event handler for editing object
+     */
+    objectEditHandler = function () {
+        var id = $(this).attr("data-id");
+
+        // controller.edit(id);
     };
 
     /* @method init
@@ -85,7 +98,8 @@ APP.Controller = (function ($, Handlebars, service) {
     controller.init = function () {
         controller.counter++; // ATTN: COMMENT OUT IN PRODUCTION
 
-        $objectsElement.on('click', '.object button', objectButtonHandler);
+        $objectsElement.on('click', '.object li.delete[data-id]', objectDeleteHandler);
+        $objectsElement.on('click', '.object li.edit[data-id]', objectEditHandler);
     };
 
     /* @method index
