@@ -34,7 +34,6 @@
             "Deleting an object with invalid index throws error");
 
         var id = 0; // Testing DELETE /objects/0
-            // liElement = $objects.has("li[data-id=\"" + id + "\"]"); // Actually an array of elements matching jQuery selector
 
         try {
             Controller.delete(id);
