@@ -65,7 +65,7 @@ Perhaps one of the most important test components of this project was simulating
 ### Example Server Responses
 All responses and data should issue and send JSON
 
-1. GET /objects *issues the following:*
+GET /objects *issues the following:*
 ```json
 {
     "objects": [
@@ -85,28 +85,28 @@ All responses and data should issue and send JSON
     "size": 3
 }
 ```
-2. GET /objects/:id *issues the following:*
+GET /objects/:id *issues the following:*
 ```json
 {
     "id": 0,
     "color": "red"
 }
 ```
-3. POST /objects/:id *should send the following:*
+POST /objects/:id *should send the following:*
 ```json
 {
     "id": 3,
     "color": "red"
 }
 ```
-4. PUT /objects/:id *should send the following:*
+PUT /objects/:id *should send the following:*
 ```json
 {
     "id": 0,
     "color": "blue"
 }
 ```
-5. DELETE /objects/:id *should send the following:*
+DELETE /objects/:id *should send the following:*
 ```json
 {
     "id": 0,
